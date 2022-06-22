@@ -4,3 +4,8 @@
 - Никола С.
 - Иван 
 
+Андрей направи - Датабазата в restdb.io, 
+проекта в github,
+всички нужни файлове за самия проект
+Върху - rootnavigation, thankyou, utils, editform и service
+и отделно трябваше да се оправи "node_modules\@react-native-community\datetimepicker", защото picker командата не работеше и трябваше да се тегли отделен plugin.

@@ -3,7 +3,7 @@ import { View, Button, StyleSheet } from "react-native";
 import { FlatList } from "react-native";
 import QualificationCard from "./QualificationCard";
 import moment from "moment";
-import { getQualification } from "./QualificationService";
+import { getQualifications } from "./QualificationService";
 
 class QualificationList extends Component {
   state = {
@@ -12,7 +12,7 @@ class QualificationList extends Component {
 
   componentDidMount() {
     this.props.navigation.addListener('focus', () => {
-      getQualification().then(qualifications => this.setState({ qualifications }));
+      getQualifications().then(qualifications => this.setState({ qualifications }));
     });
 
     setInterval(() => {
@@ -22,7 +22,7 @@ class QualificationList extends Component {
           updateTime: Date.now()
         }))
       });
-    }, 1000); //1 секунди = 1000 милисекунди
+    }, 1000);
   }
 
   render() {
@@ -30,11 +30,11 @@ class QualificationList extends Component {
       <View style={styles.listView}>
         <FlatList
           data={this.state.qualifications}
-          renderItem={({ item }) => <QualificationCard QualificationItem={item} />}
+          renderItem={({ item }) => <QualificationCard item={item} />}
         ></FlatList>
         <Button
           onPress={() => this.props.navigation.navigate("QualificationForm")}
-          title="Add qualification"
+          title="Add"
         />
       </View>
     );

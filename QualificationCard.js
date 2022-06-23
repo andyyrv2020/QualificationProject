@@ -4,52 +4,46 @@ import { formatDate, getCountdownParts } from "./util";
 import { deleteQualification } from "./QualificationService";
 import * as RootNavigation from "./RootNavigation";
 
-export default function QualificationCard({ qualificationItem }) {
-  const countdown = getCountdownParts(qualificationItem.date);
+export default function QualificationCard({ item }) {
+  const countdown = getCountdownParts(item.date);
+
+
 
   return (
     <View style={styles.qualificationCard}>
-      <View style={styles.qualificationCardHeader}>
-        <Text style={styles.title}>{qualificationItem.title}</Text>
-        <Text style={styles.date}>{formatDate(qualificationItem.date)}</Text>
-      </View>
-      <Text style={styles.description}>{qualificationItem.description}</Text>
-      <View style={styles.counterContainer}>
-        <View style={styles.counter}>
-          <Text style={styles.counterText}>{countdown.days}</Text>
-          <Text style={styles.counterLabel}>Days</Text>
-        </View>
-        <View style={styles.counter}>
-          <Text style={styles.counterText}>{countdown.hours}</Text>
-          <Text style={styles.counterLabel}>Hours</Text>
-        </View>
-        <View style={styles.counter}>
-          <Text style={styles.counterText}>{countdown.minutes}</Text>
-          <Text style={styles.counterLabel}>Minutes</Text>
-        </View>
-        <View style={styles.counter}>
-          <Text style={styles.counterText}>{countdown.seconds}</Text>
-          <Text style={styles.counterLabel}>Seconds</Text>
-        </View>
-      </View>
-      <View style={styles.mt10}>
+
+      <Text style={styles.employee}>Employee:</Text>
+      <Text style={styles.names}>{item.names}</Text>
+
+      <Text style={styles.qualification}>Qualification:</Text>
+      <Text style={styles.qname}>{item.qname}</Text>
+
+      <Text style={styles.graduation}>Graduation:</Text>
+      <Text style={styles.dates}>{item.dates}</Text>
+
+      <Text style={styles.credits}>Credits:</Text>
+      <Text style={styles.creditsstyle}>{item.credits}</Text>
+
+      <Text style={styles.created}>Created on:</Text>
+      <Text style={styles.date}>{formatDate(item.date)}</Text>
+
+      <View style={styles.edit}>
         <Button
           onPress={() =>
             RootNavigation.navigate("QualificationEditForm", {
-              id: qualificationItem._id,
+              id: item._id,
             })
           }
-          title="Edit qualification"
+          title="Edit"
         />
       </View>
-      <View style={styles.mt10}>
+      <View style={styles.delete}>
         <Button
           onPress={() => {
-            //TODO: use Alert.alert from react native on phone
-            deleteQualification(qualificationItem._id);
+            deleteQualification(item._id);
             RootNavigation.navigate("QualificationDeleted", {});
           }}
-          title="Delete qualification"
+          title="Delete"
         />
       </View>
     </View>
@@ -58,43 +52,169 @@ export default function QualificationCard({ qualificationItem }) {
 
 const styles = StyleSheet.create({
   qualificationCard: {
-    borderColor: "black",
-    borderWidth: 1,
-    marginBottom: 16,
-    padding: 16,
-    backgroundColor: "#04b032",
-    width: "100%",
+    borderColor: "#787878",
+    borderWidth: 3,
+    borderStyle: "dashed",
+    margin: 15,
+    padding: 15,
+    display: 'flex',
+    alignItems: 'left',
+    //justifyContent: 'left',
+    backgroundColor: "#424242",
+    width: "30%",
   },
+  names: { //right
+    flex: 1,
+    fontSize: 25,
+    color: "#fff",
+    position: "relative",
+    top: "-8px",
+    width: "100%",
+    textAlign: "right",
+
+  },
+
+  dates: { //right
+    flex: 1,
+    fontSize: 25,
+    color: "#fff",
+    position: "relative",
+    top: "-8px",
+    width: "100%",
+    textAlign: "right",
+
+  },
+
+  creditsstyle: { //right
+    flex: 1,
+    fontSize: 25,
+    color: "#fff",
+    position: "relative",
+    top: "-8px",
+    width: "100%",
+    textAlign: "right",
+
+  },
+
+  date: { //right
+    flex: 1,
+    fontSize: 25,
+    color: "#fff",
+    position: "relative",
+    top: "-8px",
+    width: "100%",
+    textAlign: "right",
+
+  },
+
+  qname: { //right
+    flex: 1,
+    fontSize: 25,
+    color: "#fff",
+    position: "relative",
+    top: "-8px",
+    width: "100%",
+    textAlign: "right",
+
+  },
+
+  qualification: { // left
+    flex: 1,
+    fontSize: 25,
+    color: "#fff",
+    marginBottom: "-25px",
+    position: "relative",
+    width: "100%",
+    textAlign: "left",
+
+  },
+
+  created: { // left
+    flex: 1,
+    fontSize: 25,
+    color: "#fff",
+    marginBottom: "-25px",
+    position: "relative",
+    width: "100%",
+    textAlign: "left",
+
+  },
+
+  graduation: { // left
+    flex: 1,
+    fontSize: 25,
+    color: "#fff",
+    marginBottom: "-25px",
+    position: "relative",
+    width: "35%",
+    textAlign: "left",
+    flexBasis: "100%",
+  },
+
+  credits: { // left
+    flex: 1,
+    fontSize: 25,
+    color: "#fff",
+    marginBottom: "-25px",
+    position: "relative",
+    width: "35%",
+    textAlign: "left",
+    flexBasis: "100%",
+  },
+
+  employee: { // left
+    flex: 1,
+    fontSize: 25,
+    color: "#fff",
+    marginBottom: "-25px",
+    position: "relative",
+    width: "35%",
+    textAlign: "left",
+    flexBasis: "100%",
+  },
+
+  employee: { // left
+    flex: 1,
+    fontSize: 25,
+    color: "#fff",
+    marginBottom: "-25px",
+    position: "relative",
+    width: "35%",
+    textAlign: "left",
+    flexBasis: "100%",
+  },
+
   qualificationCardHeader: {
     flex: 1,
     flexDirection: "row",
   },
   title: {
-    fontSize: 38,
+    flex: 1,
+    fontSize: 20,
     color: "#fff",
-    textAlign: "left",
-    flexBasis: "80%",
+    float: "left",
+    width: "50%",
+    textAlign: "row",
+    flexBasis: "100%",
   },
-  date: {
-    textAlign: "right",
-    flexBasis: "20%",
-    fontSize: 38,
-    color: "#ffffff",
-  },
-  description: {
-    fontSize: 24,
-    marginTop: 16,
+
+  description: { //information
+    flex: 1,
+    fontSize: 10,
     color: "#fff",
+    float: "left",
+    width: "50%",
+    textAlign: "center",
+    flexBasis: "100%",
   },
   counterContainer: {
-    flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: "5%", //padding отляво и отдясно
+    paddingHorizontal: "5%",
     marginTop: 30,
   },
   counter: {
-    flexBasis: "25%",
+    flexBasis: "20%",
   },
   counterText: {
     fontSize: 40,
@@ -107,7 +227,22 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     color: "#fff",
   },
-  mt10: {
-    marginTop: 10,
+  edit: {
+    margin: "1px",
+    width: "70px",
+    height: "55px",
+    position: "relative",
+    bottom: "-10px",
   },
+
+  delete: {
+    margin: "1px",
+    left: "320px",
+    width: "70px",
+    color: "#474747",
+    height: "55px",
+    position: "absolute",
+    bottom: "5px",
+  },
+
 });

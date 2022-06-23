@@ -6,18 +6,24 @@ import { addQualification } from "./QualificationService";
 
 class QualificationForm extends Component {
   state = {
-    title: "",
     date: Date.now(),
-    description: "",
     showDatePicker: false
   };
 
-  handleChangeTitle = (value) => {
-    this.setState({ title: value });
+  handleChangeNames = (value) => {
+    this.setState({ names: value });
   };
 
-  handleChangeDescription = (value) => {
-    this.setState({ description: value });
+  handleChangeQname = (value) => {
+    this.setState({ qname: value });
+  };
+
+  handleChangeDates = (value) => {
+    this.setState({ dates: value });
+  };
+
+  handleChangeCredits = (value) => {
+    this.setState({ credits: value });
   };
 
   handleDatePress = () => {
@@ -28,7 +34,7 @@ class QualificationForm extends Component {
     this.setState({ showDatePicker: false });
   };
 
-  handleDatePicked = (Qualification, selectedDate) => {
+  handleDatePicked = (qualification, selectedDate) => {
     const currentDate = selectedDate || this.state.date;
     this.setState({ date: currentDate });
     this.handleDatePickerHide();
@@ -39,10 +45,38 @@ class QualificationForm extends Component {
       <View>
         <TextInput
           style={styles.textInput}
-          placeholder="Qualification title"
-          value={this.state.title}
-          onChangeText={this.handleChangeTitle}
+          placeholder="Employee"
+          value={this.state.names}
+          onChangeText={this.handleChangeNames}
         />
+        <TextInput
+          style={styles.textInput}
+          placeholder="Qualification"
+          value={this.state.qname}
+          onChangeText={this.handleChangeQname}
+        />
+        <TextInput
+          style={styles.textInput}
+          placeholder="Graduation"
+          value={this.state.dates}
+          onChangeText={this.handleChangeDates}
+        />
+
+        <TextInput
+          style={styles.textInput}
+          placeholder="Credits"
+          value={this.state.credits}
+          onChangeText={this.handleChangeCredits}
+        />
+
+        {this.state.showDatePicker && (
+          <DateTimePicker
+            value={this.state.date}
+            mode="datetime"
+            is24Hour={true}
+            onChange={this.handleDatePicked}
+          />
+        )}
 
         <TextInput
           style={styles.textInput}
@@ -51,27 +85,15 @@ class QualificationForm extends Component {
           editable={!this.state.showDatePicker}
           onFocus={this.handleDatePress}
         />
-        {
-          this.state.showDatePicker &&
-          <DateTimePicker
-            value={this.state.date}
-            mode="datetime"
-            is24Hour={true}
-            onChange={this.handleDatePicked}
-          />
-        }
-        <TextInput
-          style={styles.textInput}
-          placeholder="Qualification description"
-          value={this.state.description}
-          onChangeText={this.handleChangeDescription}
-        />
+
         <Button title="Add" onPress={
           () => {
             addQualification({
-              title: this.state.title,
               date: formatDate(this.state.date),
-              description: this.state.description
+              names: this.state.names,
+              qname: this.state.qname,
+              dates: this.state.dates,
+              credits: this.state.credits,
             })
               .then(() => this.props.navigation.navigate('ThankYou'));
           }

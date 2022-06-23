@@ -6,9 +6,9 @@ class ThankYou extends Component {
         return (
             <View>
                 <Text>
-                    Thank you for adding your qualification
+                    Thank you for adding information!
                 </Text>
-                <Button title='Go to qualifications'
+                <Button title='Back'
                     onPress={
                         () => this.props.navigation.navigate('QualificationList')
                     }

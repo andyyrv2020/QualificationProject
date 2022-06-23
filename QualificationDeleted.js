@@ -6,9 +6,9 @@ class QualificationDeleted extends Component {
         return (
             <View>
                 <Text>
-                    The qualification has been deleted.
+                    The information was deleted successfully!
                 </Text>
-                <Button title='Go to qualifications'
+                <Button title='Back'
                     onPress={
                         () => this.props.navigation.navigate('QualificationList')
                     }

@@ -1,11 +1,10 @@
 import moment from 'moment';
 import uuid from 'uuid';
 
-const BASE_URL = 'https://qualificationservice-f742.restdb.io/rest/data';
+const BASE_URL = 'https://quisify-e0ab.restdb.io/rest/data';
+const API_KEY = '62b33f3347be35714b35fcc7';
 
-const API_KEY = '082faf8f0c1525617b33fdb86e5a261cbf15c';
-
-export function getQualification() {
+export function getQualifications() {
     return fetch(BASE_URL,
         {
             method: 'GET',
@@ -43,7 +42,7 @@ export function getQualificationById(id) {
 }
 
 
-export function addQualification({ title, date, description }) {
+export function addQualification({ names, qname, dates, credits, date }) {
     return fetch(BASE_URL,
         {
             method: 'POST',
@@ -52,14 +51,14 @@ export function addQualification({ title, date, description }) {
                 'x-apikey': API_KEY
             },
             body: JSON.stringify({
-                title, date, description, id: uuid()
+                names, qname, dates, credits, date, id: uuid()
             })
         })
         .then(result => result.json())
         .catch(error => console.error(error));
 }
 
-export function editQualification({ id, title, date, description }) {
+export function editQualification({ id, names, qname, dates, credits, date }) {
     return fetch(`${BASE_URL}/${id}`,
         {
             method: 'PUT',
@@ -68,7 +67,7 @@ export function editQualification({ id, title, date, description }) {
                 'x-apikey': API_KEY
             },
             body: JSON.stringify({
-                title, date, description
+                names, qname, dates, credits, date
             })
         })
         .then(result => result.json())

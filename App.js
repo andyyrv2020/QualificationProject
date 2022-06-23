@@ -15,7 +15,6 @@ export default function App() {
       isReadyRef.current = false
     };
   }, []);
-
   return (
     <NavigationContainer
       ref={navigationRef}
@@ -24,13 +23,12 @@ export default function App() {
       }}
     >
       <Stack.Navigator initialRouteName='QualificationList'>
-        <Stack.Screen name='QualificationList' component={QualificationList} options={{ title: 'Qualifications' }} />
-        <Stack.Screen name='QualificationForm' component={QualificationForm} options={{ title: 'Add Qualification' }} />
-        <Stack.Screen name='QualificationEditForm' component={QualificationEditForm} options={{ title: 'Edit Qualification' }} />
-        <Stack.Screen name='ThankYou' component={ThankYou} options={{ title: 'Thank You' }} />
-        <Stack.Screen name='QualificationDeleted' component={QualificationDeleted} options={{ title: 'Delete' }} />
+        <Stack.Screen name='QualificationList' component={QualificationList} options={{ title: 'Additional Qualifications and Courses' }} />
+        <Stack.Screen name='QualificationForm' component={QualificationForm} options={{ title: 'Add' }} />
+        <Stack.Screen name='QualificationEditForm' component={QualificationEditForm} options={{ title: 'Edit' }} />
+        <Stack.Screen name='ThankYou' component={ThankYou} options={{ title: 'Thank You!' }} />
+        <Stack.Screen name='QualificationDeleted' component={QualificationDeleted} options={{ title: 'Deleted' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
-
